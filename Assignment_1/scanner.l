@@ -1,29 +1,29 @@
 
 DIGIT		[0-9]
 IDENTIFIER 	[a-zA-Z][a-zA-Z0-9]*
+COMMENT		--.*\n
 WHITESPACE 	[ \r\n\t]
-COMMENT	--.*\n
 
 %%
 
-PROGRAM		{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }  	/* KEYWORD_PROGRAM */
-BEGIN			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_BEGIN */
-END			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_END */
-FUNCTION		{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_FUNCTION */
-READ			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_READ */
-WRITE			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_WRITE */
-IF			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_IF */
-ELSE			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_ELSE */
-FI			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_FI */
-FOR			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_FOR */
-ROF			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_ROF */
-BREAK			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_BREAK */
-CONTINUE		{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_CONTINUE */
-RETURN			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_RETURN */
-INT			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_INT */
-VOID			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_VOID */
-STRING			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_STRING */
-FLOAT			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }	/* KEYWORD_FLOAT */
+PROGRAM			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }  	/* KEYWORD_PROGRAM */
+BEGIN			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_BEGIN */
+END			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_END */
+FUNCTION		{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_FUNCTION */
+READ			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_READ */
+WRITE			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_WRITE */
+IF			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_IF */
+ELSE			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_ELSE */
+FI			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_FI */
+FOR			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_FOR */
+ROF			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_ROF */
+BREAK			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_BREAK */
+CONTINUE		{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_CONTINUE */
+RETURN			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_RETURN */
+INT			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_INT */
+VOID			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_VOID */
+STRING			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_STRING */
+FLOAT			{ fprintf(yyout, "Token Type: KEYWORD\nValue: %s\n", yytext); }		/* KEYWORD_FLOAT */
 
 ":="			{ fprintf(yyout, "Token Type: OPERATOR\nValue: %s\n", yytext); }	/* OPERATOR_ASSIGN */
 "+"			{ fprintf(yyout, "Token Type: OPERATOR\nValue: %s\n", yytext); }	/* OPERATOR_ADD */
@@ -67,10 +67,3 @@ int main(int argc, char* argv[]) {
 	yylex();
 	return 0;
 }
-
-
-
-
-
-
-
