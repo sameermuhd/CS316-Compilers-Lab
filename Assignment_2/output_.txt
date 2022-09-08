@@ -1,0 +1,83 @@
+Commit ID tagged for submission: f01dd40810f554b92558de9195a1694fc69fc1bc
+Submission graded at: 2022-02-20 03:19:49
+
+[*] make dev
+make: Warning: File 'Makefile' has modification time 474568 s in the future
+Mohammad Sameer
+190010024@iitdh.ac.in
+make: warning:  Clock skew detected.  Your build may be incomplete.
+[*] make clean
+make: Warning: File 'Makefile' has modification time 474568 s in the future
+make: warning:  Clock skew detected.  Your build may be incomplete.
+[*] runme file found.
+[*] make compiler
+make: Warning: File 'Makefile' has modification time 474567 s in the future
+make: warning:  Clock skew detected.  Your build may be incomplete.
+Testing the output...
+[*] ./runme test1.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test1.out
+[*] ./runme test10.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test10.out
+[*] ./runme test11.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test11.out
+[*] ./runme test12.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test12.out
+[*] ./runme test13.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test13.out
+[*] ./runme test14.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test14.out
+[*] ./runme test15.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test15.out
+[*] ./runme test16.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test16.out
+[*] ./runme test17.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test17.out
+[*] ./runme test18.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test18.out
+[*] ./runme test19.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test19.out
+[*] ./runme test2.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test2.out
+[*] ./runme test20.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test20.out
+[*] ./runme test21.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test21.out
+[*] ./runme test22.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test22.out
+[*] ./runme test3.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test3.out
+[*] ./runme test4.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test4.out
+[*] ./runme test5.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test5.out
+[*] ./runme test6.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test6.out
+[*] ./runme test7.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test7.out
+[*] ./runme test8.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test8.out
+[*] ./runme test9.micro user_op.out
+[*] exiting from runme..
+[*] diff user_op.out test9.out
+grade:11
