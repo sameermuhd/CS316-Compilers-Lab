@@ -1,0 +1,356 @@
+%{
+    #include <iostream>
+    #include <stdio.h>
+    #include <vector>
+    #include <string>
+    #include "symbolTable.h"
+    #include "symbol.h"
+
+    int yylex();
+    void yyerror(char const* msg);
+
+    SymbolTable* SymTable = new SymbolTable();
+%}
+
+%token KW_PROGRAM
+%token KW_BEGIN
+%token KW_END
+%token KW_FUNCTION
+%token KW_READ
+%token KW_WRITE
+%token KW_IF
+%token KW_ELSE
+%token KW_FI
+%token KW_FOR
+%token KW_ROF
+%token KW_BREAK
+%token KW_CONTINUE
+%token KW_RETURN
+%token <intval> KW_INT
+%token KW_VOID
+%token KW_STRING
+%token <floatval> KW_FLOAT
+
+%token OP_ASSIGN	/* := */
+%token OP_ADD		/* +  */
+%token OP_SUB		/* -  */
+%token OP_MUL		/* *  */
+%token OP_DIV		/* /  */ 
+%token OP_EQ		/* =  */
+%token OP_NEQ		/* != */
+%token OP_LT		/* <  */
+%token OP_GT		/* >  */
+%token OP_OP		/* (  */
+%token OP_CP		/* )  */
+%token OP_SEMICOLON	/* ;  */
+%token OP_COMMA		/* ,  */
+%token OP_LEQ		/* <= */
+%token OP_GEQ		/* >= */
+
+%token <str> IDENTIFIER
+%token INTLITERAL
+%token FLOATLITERAL
+%token <str> STRINGLITERAL
+
+%type <intval> var_type
+%type <str> str id
+%type <strlist> id_list id_tail
+
+%union{
+    int intval;
+    float floatval;
+    std::string* str;
+    std::vector<std::string*> * strlist;
+}
+
+%%
+
+/* Program */
+program     
+    : KW_PROGRAM id KW_BEGIN {
+        SymTable->addTable("GLOBAL");
+    }
+    pgm_body KW_END {
+        SymTable->removeTable();
+    }
+    ;
+
+id          
+    : IDENTIFIER 
+    ;
+
+pgm_body    
+    : decl func_declarations 
+    ;
+
+decl        
+    : string_decl decl 
+    | var_decl decl 
+    | %empty 
+    ;
+
+/* Global String Declaration */
+string_decl
+    : KW_STRING id OP_ASSIGN str OP_SEMICOLON {
+        SymTable->insertSymbol(*($2), "STRING", *($4));
+    }
+    ;
+
+str
+    : STRINGLITERAL 
+    ;
+
+/* Variable Declaration */
+var_decl
+    : var_type id_list OP_SEMICOLON {
+        std::vector<std::string*> list = *$2;
+        for(int i = list.size(); i > 0; i--){
+            if($1 == KW_FLOAT){
+                SymTable->insertSymbol(*(list[i-1]), "FLOAT");
+            }
+            else if($1 == KW_INT){
+                SymTable->insertSymbol(*(list[i-1]), "INT");
+            }
+        }
+    }
+    ;
+
+var_type
+    : KW_FLOAT { $$ = KW_FLOAT; }
+    | KW_INT {$$ = KW_INT; }
+    ;
+
+any_type
+    : var_type 
+    | KW_VOID 
+    ;
+
+id_list
+    : id id_tail {
+        $$ = $2;
+        $$->push_back($1);
+    }
+    ;
+
+id_tail
+    : OP_COMMA id id_tail {
+        $$ = $3;
+        $$->push_back($2);
+    }
+    | %empty {
+        std::vector<std::string*>* newList = new std::vector<std::string*>;
+        $$ = newList;
+    }
+    ;
+
+/* Function Parameter List */
+param_decl_list
+    : param_decl param_decl_tail 
+    | %empty 
+    ; 
+
+param_decl
+    : var_type id {
+        if($1 == KW_FLOAT)
+            SymTable->insertSymbol(*($2), "FLOAT");
+        else if($1 == KW_INT)
+            SymTable->insertSymbol(*($2), "INT");
+    }
+    ;
+
+param_decl_tail
+    : OP_COMMA param_decl param_decl_tail 
+    | %empty 
+    ;
+
+/* Function Declarations */
+func_declarations
+    : func_decl func_declarations 
+    | %empty 
+    ;
+
+func_decl
+    : KW_FUNCTION any_type id {
+        SymTable->addTable(*($3));
+    }
+    OP_OP param_decl_list OP_CP KW_BEGIN func_body KW_END {
+        SymTable->removeTable();
+    } 
+    ;
+
+func_body
+    : decl stmt_list 
+    ;
+
+/* Statement List */ 
+stmt_list
+    : stmt stmt_list 
+    | %empty 
+    ;
+
+stmt
+    : base_stmt 
+    | if_stmt 
+    | for_stmt 
+    ;
+
+base_stmt
+    : assign_stmt 
+    | read_stmt 
+    | write_stmt 
+    | return_stmt 
+    ;
+
+/* Basic Statements */
+assign_stmt
+    : assign_expr OP_SEMICOLON 
+    ;
+
+assign_expr
+    : id OP_ASSIGN expr 
+    ;
+
+read_stmt
+    : KW_READ OP_OP id_list OP_CP OP_SEMICOLON
+    ;
+
+write_stmt
+    : KW_WRITE OP_OP id_list OP_CP OP_SEMICOLON 
+    ;
+
+return_stmt
+    : KW_RETURN expr OP_SEMICOLON 
+    ;
+
+/* Expressions */
+expr
+    : expr_prefix factor 
+    ;
+
+expr_prefix
+    : expr_prefix factor addop 
+    | %empty 
+    ;
+
+factor
+    : factor_prefix postfix_expr 
+    ;
+
+factor_prefix
+    : factor_prefix postfix_expr mulop 
+    | %empty 
+    ;
+
+postfix_expr
+    : primary 
+    | call_expr 
+    ;
+
+call_expr
+    : id OP_OP expr_list OP_CP 
+    ;
+
+expr_list
+    : expr expr_list_tail 
+    | %empty 
+    ;
+
+expr_list_tail
+    : OP_COMMA expr expr_list_tail 
+    | %empty 
+    ;
+
+primary
+    : OP_OP expr OP_CP 
+    | id 
+    | INTLITERAL 
+    | FLOATLITERAL 
+    ;
+
+addop
+    : OP_ADD 
+    | OP_SUB 
+    ;
+
+mulop
+    : OP_MUL 
+    | OP_DIV 
+    ;
+
+
+/* Complex Statements and Condition */
+if_stmt
+    : KW_IF {
+        SymTable->addTable();
+    }
+    OP_OP cond OP_CP decl stmt_list {
+        SymTable->removeTable();
+    }
+    else_part KW_FI 
+    ;
+
+else_part
+    : KW_ELSE {
+        SymTable->addTable();
+    }
+    decl stmt_list {
+        SymTable->removeTable();
+    }
+    | %empty 
+    ;
+
+cond
+    : expr compop expr 
+    ;
+
+compop
+    : OP_LT 
+    | OP_GT 
+    | OP_EQ 
+    | OP_NEQ 
+    | OP_LEQ 
+    | OP_GEQ 
+    ;
+
+init_stmt
+    : assign_expr 
+    | %empty 
+    ;
+
+incr_stmt
+    : assign_expr 
+    | %empty 
+    ;
+
+for_stmt
+    : KW_FOR {
+        SymTable->addTable();
+    }
+    OP_OP init_stmt OP_SEMICOLON cond OP_SEMICOLON incr_stmt OP_CP decl aug_stmt_list KW_ROF {
+        SymTable->removeTable();
+    }
+    ;
+
+aug_stmt_list
+    : aug_stmt aug_stmt_list 
+    | %empty 
+    ;
+
+aug_stmt
+    : base_stmt 
+    | aug_if_stmt 
+    | for_stmt 
+    | KW_CONTINUE OP_SEMICOLON 
+    | KW_BREAK OP_SEMICOLON 
+    ;
+
+aug_if_stmt
+    : KW_IF OP_OP cond OP_CP decl aug_stmt_list aug_else_part KW_FI 
+    ;
+
+aug_else_part
+    : KW_ELSE decl aug_stmt_list 
+    | %empty 
+    ;
+
+%%
