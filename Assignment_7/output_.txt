@@ -1,0 +1,65 @@
+Commit ID tagged for submission: 02d1649c3ebae20d9f66fb3718532fc83041f6de
+Submission graded at: 2022-04-27 23:06:57
+
+[*] make dev
+Mohammad Sameer
+190010024@iitdh.ac.in
+[*] make clean
+[*] runme file found.
+[*] make compiler
+Testing the output...
+[*] ./runme factorial2.micro user_op.out
+factorial2.micro
+correct output factorial2.output
+[*] ./runme fibonacci2.micro user_op.out
+fibonacci2.micro
+correct output fibonacci2.output
+[*] ./runme fma.micro user_op.out
+fma.micro
+correct output fma.output
+[*] ./runme step7_hidden1.micro user_op.out
+step7_hidden1.micro
+Passed hidden testcase 1
+[*] ./runme step7_hidden2.micro user_op.out
+step7_hidden2.micro
+Passed hidden testcase 2
+[*] ./runme step8_hidden10.micro user_op.out
+step8_hidden10.micro
+Passed hidden testcase 10
+[*] ./runme step8_hidden3.micro user_op.out
+step8_hidden3.micro
+Passed hidden testcase 3
+[*] ./runme step8_hidden4.micro user_op.out
+step8_hidden4.micro
+Passed hidden testcase 4
+[*] ./runme step8_hidden5.micro user_op.out
+step8_hidden5.micro
+Passed hidden testcase 5
+[*] ./runme step8_hidden6.micro user_op.out
+step8_hidden6.micro
+Passed hidden testcase 6
+[*] ./runme step8_hidden7.micro user_op.out
+step8_hidden7.micro
+Passed hidden testcase 7
+[*] ./runme step8_hidden8.micro user_op.out
+step8_hidden8.micro
+Passed hidden testcase 8
+[*] ./runme step8_hidden9.micro user_op.out
+step8_hidden9.micro
+Passed hidden testcase 9
+[*] ./runme test_combination.micro user_op.out
+test_combination.micro
+correct output test_combination.out
+[*] ./runme test_complex.micro user_op.out
+test_complex.micro
+correct output test_complex.out
+[*] ./runme test_expr.micro user_op.out
+test_expr.micro
+correct output test_expr.out
+[*] ./runme test_if.micro user_op.out
+test_if.micro
+correct output test_if.out
+[*] ./runme test_mult.micro user_op.out
+test_mult.micro
+correct output test_mult.out
+grade:35
