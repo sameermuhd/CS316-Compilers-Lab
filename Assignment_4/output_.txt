@@ -1,0 +1,27 @@
+Commit ID tagged for submission: 6f65522d8e4ee87d337c4a257acce56f6fab47a4
+Submission graded at: 2022-03-19 04:15:22
+
+[*] make dev
+Mohammad Sameer
+190010024@iitdh.ac.in
+[*] make clean
+[*] runme file found.
+[*] make compiler
+find: ‘src’: No such file or directory
+Testing the output...
+[*] ./runme test_combination.micro user_op.out
+test_combination.micro
+correct output test_combination.out
+[*] ./runme test_complex.micro user_op.out
+test_complex.micro
+correct output test_complex.out
+[*] ./runme test_expr.micro user_op.out
+test_expr.micro
+correct output test_expr.out
+[*] ./runme test_if.micro user_op.out
+test_if.micro
+correct output test_if.out
+[*] ./runme test_mult.micro user_op.out
+test_mult.micro
+correct output test_mult.out
+grade:25
