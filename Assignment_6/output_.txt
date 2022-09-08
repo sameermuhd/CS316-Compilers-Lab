@@ -1,0 +1,27 @@
+Commit ID tagged for submission: 5c036434d4c416121a852a686ffa0d1c1fa3263b
+Submission graded at: 2022-04-21 11:06:51
+
+[*] make dev
+Mohammad Sameer
+190010024@iitdh.ac.in
+[*] make clean
+[*] runme file found.
+[*] make compiler
+Testing the compiler...
+[*] ./runme factorial2.micro user_op.out
+correct output factorial2.output
+[*] ./runme fibonacci2.micro user_op.out
+correct output fibonacci2.output
+[*] ./runme fma.micro user_op.out
+correct output fma.output
+[*] ./runme step6_hidden1.micro user_op.out
+2,3c2,3
+< Please enter 10 floating point numbers: Average of 10 numbers that you entered is: 1
+< Maximum of the numbers is: 82.7537
+---
+> Please enter 10 floating point numbers: Average of 10 numbers that you entered is: 47.946
+> Maximum of the numbers is: 99.5102
+Failing hidden testcase 1 (-7)
+[*] ./runme step6_hidden2.micro user_op.out
+Passed hidden testcase 2
+grade:28
