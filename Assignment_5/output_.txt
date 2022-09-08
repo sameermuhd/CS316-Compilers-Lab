@@ -1,0 +1,63 @@
+Commit ID tagged for submission: 10c55e174801a3707feb8ec4af1d4b3ac9ade3ad
+Submission graded at: 2022-04-13 16:22:23
+
+tinyNew.c: In member function ‘float operand::rval()’:
+tinyNew.c:262:3: warning: control reaches end of non-void function [-Wreturn-type]
+  262 |   }
+      |   ^
+tinyNew.c: In member function ‘int operand::ival()’:
+tinyNew.c:255:3: warning: control reaches end of non-void function [-Wreturn-type]
+  255 |   }
+      |   ^
+tinyNew.c: In member function ‘std::string operand::sval()’:
+tinyNew.c:266:3: warning: control reaches end of non-void function [-Wreturn-type]
+  266 |   }
+      |   ^
+Testing..... step5_test1.micro
+Key output:
+ 73
+
+Student output:
+ 73
+
+Testing..... step5_test2.micro
+Key output:
+ 142123244
+
+Student output:
+ 142123244
+
+Testing..... step5_test3.micro
+Key output:
+ 2.72029 5
+
+
+Student output:
+ 2.72029 5
+
+
+Testing..... step5_test4.micro
+Key output:
+ 2.64575
+
+
+Student output:
+ 2.64575
+
+
+Testing..... step5_test5.micro
+Key output:
+ 91
+
+Student output:
+ 91
+
+Testing..... step5_test6.micro
+Key output:
+ 2.62679
+
+
+Student output:
+ 2.62679
+
+
